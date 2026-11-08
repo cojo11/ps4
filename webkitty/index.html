@@ -16,8 +16,8 @@
     <meta property="og:title" content="WebKitty">
     <meta property="og:description"
         content="WebKitty is a user-friendly, feature-rich PS4 exploit host for 4.50-5.07 & 6.70 - 14.00.">
-    <meta property="og:image" content="http://webkitty.arabpixel.net/includes/assets/icons/webkitty.svg">
-    <meta property="og:url" content="http://webkitty.arabpixel.net">
+    <meta property="og:image" content="./includes/assets/icons/webkitty.svg">
+    <meta property="og:url" content="./">
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary">
@@ -52,7 +52,7 @@
         if (isThisPS4 && goToHttps && !isLocalServer && isCurrentHTTPS){
             if (confirm("You are currently using HTTPS, which prevents loading payloads through a bin/elf loader servers, switch to http instead? (recommended)")){
                 window.abortLoading = true;
-                window.location.href = "http://webkitty.arabpixel.net";
+                window.location.href = "http://";
             } else{
                 localStorage.setItem("dontHTTPS", "1");
             }
