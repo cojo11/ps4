@@ -2,13 +2,12 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>PS-Exploit Hub</title>
+    <title>Universal Console Exploit Router</title>
     <style>
         body { background-color: #0b0d10; color: #ffffff; font-family: sans-serif; text-align: center; padding-top: 5vh; margin: 0; }
-        .container { max-width: 700px; margin: 0 auto; padding: 20px; background: rgba(255, 255, 255, 0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); padding-bottom: 30px; }
+        .container { max-width: 700px; margin: 0 auto; padding: 20px; background: rgba(255, 255, 255, 0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
         h1 { color: #0078ff; font-weight: 400; }
         .countdown { font-size: 18px; color: #ff9d00; font-weight: bold; margin: 20px 0; background: rgba(255, 157, 0, 0.1); padding: 10px; border-radius: 6px; display: inline-block; }
-        .fw-detect { font-size: 14px; color: #7fd0a0; font-weight: bold; margin: 10px 0; }
         .credits-box { text-align: left; margin-top: 20px; padding: 15px; background: rgba(0, 0, 0, 0.2); border-radius: 8px; border-left: 4px solid #0078ff; }
         ul { list-style-type: none; padding-left: 0; }
         li { padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; }
@@ -21,35 +20,28 @@
         function startRouter() {
             var ua = navigator.userAgent;
             
-            // 1. PS3 ERKENNUNG -> Sofortige, unfehlbare Umlenkung zu ps3tool.com
+            // 1. ERKENNUNG: PlayStation 3
             if (ua.match(/PLAYSTATION 3/i)) {
-                var ps3Match = ua.match(/PLAYSTATION 3;\s+(\d+\.\d+)/i);
-                if (ps3Match) {
-                    document.getElementById("fw-status").innerHTML = "Erkannte PS3 Firmware: v" + ps3Match + " -> Verbinde zu PS3Tool...";
-                } else {
-                    document.getElementById("fw-status").innerHTML = "PS3 erkannt -> Verbinde zu PS3Tool...";
-                }
-                // Weiterleitung auf die funktionierende Online-Plattform für die PS3
-                redirectUrl = "https://ps3tool.com";
+                redirectUrl = "ps3/index.html";
             } 
-            // 2. PS4 ERKENNUNG -> Bleibt lokal auf deinen schnellen Server-Ordnern
+            // 2. ERKENNUNG: PlayStation 4
             else if (ua.match(/PlayStation\s+4/i)) {
                 if (ua.match(/12\.50/) || ua.match(/12\.5/)) {
+                    // Deine 12.50 geht in den stabilen psx8-Multi-Host-Ordner
                     redirectUrl = "12/index.html";
-                    document.getElementById("fw-status").innerHTML = "Erkannte PS4 Firmware: v12.50";
                 } else if (ua.match(/14\.00/) || ua.match(/14\./)) {
+                    // Deine 14.00 geht direkt in das Afterglow-Paket
                     redirectUrl = "14/index.html";
-                    document.getElementById("fw-status").innerHTML = "Erkannte PS4 Firmware: v14.00";
                 } else {
+                    // Fallback für alle anderen PS4-Firmwares
                     redirectUrl = "12/index.html";
-                    document.getElementById("fw-status").innerHTML = "Konsole erkannt: PlayStation 4 System";
                 }
             }
 
             if (redirectUrl !== "") { 
                 countdownTimer(); 
             } else {
-                document.getElementById("timer-box").innerHTML = "<br><a href='https://ps3tool.com' style='color:#ff3333;'>[PS3Tool (Extern)]</a> | <a href='12/index.html' style='color:#0078ff;'>[PS4 12.50]</a> | <a href='14/index.html' style='color:#0078ff;'>[PS4 14.00]</a>";
+                document.getElementById("timer-box").innerHTML = "<br><a href='ps3/index.html' style='color:#0078ff;'>[PS3 Toolset]</a> | <a href='12/index.html' style='color:#0078ff;'>[PS4 12.50]</a> | <a href='14/index.html' style='color:#0078ff;'>[PS4 14.00]</a>";
             }
         }
 
@@ -67,16 +59,15 @@
 </head>
 <body>
 <div class="container">
-    <h1>PS-Exploit Hub</h1>
-    <div id="fw-status" class="fw-detect">Analysiere System-Software...</div>
+    <h1>Universal Console Exploit Router</h1>
     <div id="timer-box" class="countdown">Initialisiere Weiterleitung...</div>
-    
     <div class="credits-box">
         <h3 style="color: #7fd0a0; margin-top:0;">❤️ Credits & Thanks to the Scene Developers</h3>
         <ul>
-            <li>PS3Tool Team <span class="dev-work">— PS3 Flash Tools App & Exploit Hosting</span></li>
+            <li>bguerville & Team <span class="dev-work">— PS3 NOR/NAND Toolset Framework</span></li>
             <li>SiSTRo <span class="dev-work">— GoldHEN Enabler System Core</span></li>
-            <li>well0nez / psx8 Team <span class="dev-work">— PS4 Exploit AIO Engines</span></li>
+            <li>well0nez <span class="dev-work">— Afterglow Exploit Engine for FW 14.00</span></li>
+            <li>psx8 Developer Team <span class="dev-work">— Stable Multi-Firmware Host Core for FW 12.50</span></li>
         </ul>
     </div>
 </div>
