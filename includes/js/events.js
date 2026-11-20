@@ -226,17 +226,6 @@ function exploitChain(value) {
     user.exploitChain = parseFloat(value);
 }
 
-function updateBareboneJB() {
-    if (ui.bareboneJBInput) {
-        ui.bareboneJBInput.checked = user.bareboneJB;
-    }
-}
-
-function setBareboneJB(checked) {
-    storage.set('bareboneJB', checked);
-    user.bareboneJB = checked;
-}
-
 function clearStats() {
     if (!confirm((window.lang && window.lang.clearStatsConfirm) || 'Reset statistics?')) return;
     storage.remove('jbTotal');

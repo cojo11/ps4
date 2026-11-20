@@ -3,8 +3,8 @@ CACHE MANIFEST
 # v5 - regenerated: only files that really exist
 
 CACHE:
+../../../includes/caches/cache67x.html
 ../../../cache.html
-../../../exploit.html
 ../../../includes/css/cache.css
 ../../../includes/css/exploit.css
 ../../../includes/css/layouts/index.css

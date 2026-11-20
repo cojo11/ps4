@@ -30,11 +30,7 @@ async function jailbreak() {
   // deliverPayload.js fills ELFLDR from user.ip, make sure that is the console
   if (!user.ip) user.ip = isPS4Console() ? '127.0.0.1' : (storage.getString('PayLoaderIp', window.location.hostname) || '127.0.0.1');
 
-  // barebone exploit preferred? go to exploit file
-  if (user.bareboneJB) {
-    window.location.href = testModeUrl("./exploit.html");
-    return;
-  }
+  // Barebone mode is gone: the log always runs in the status window below.
 
   // add one jailbreak attempt to stats
   // prevent double exploit attempt for 6.7x
@@ -217,7 +213,6 @@ async function loadSettings() {
     loadGoldHENVer();
     getReloadAfterJb();
     autoJailbreak();
-    updateBareboneJB();
     loadExploitChain();
   } catch (e) {
     alert("Error in loadSettings: " + e.message);

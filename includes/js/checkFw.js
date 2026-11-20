@@ -49,7 +49,7 @@ function CheckFW() {
                 });
                 elementsToHide.push(
                     'initial-screen', 'henSelection',
-                    'autoJbContainer', 'successRate', 'bareboneJBOption', 'chooseExploitChain'
+                    'autoJbContainer', 'successRate', 'chooseExploitChain'
                 );
 
                 var henSelection = document.getElementById('henSelection');
@@ -89,7 +89,7 @@ function CheckFW() {
             });
             elementsToHide.push(
                 'initial-screen', 'henSelection', 'autoJbContainer', 'successRate',
-                'bareboneJBOption', 'chooseExploitChain', 'autoJbOption'
+                'chooseExploitChain', 'autoJbOption'
             );
 
             if (user.platform === 'Android' || user.platform === 'iOS') {

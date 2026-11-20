@@ -43,13 +43,7 @@ function _jailbreak() {
           payloadPath = storage.session.getString('payload_path', null);
           log("Loading: " + payloadPath);
 
-          // barebone exploit preferred? go to exploit file
-          if (!user.bareboneJB) {
-            _context.n = 2;
-            break;
-          }
-          window.location.href = testModeUrl("./exploit.html");
-          return _context.a(2);
+          // Barebone mode is gone: the log always runs in the status window.
         case 2:
           // add one jailbreak attempt to stats
           // prevent double exploit attempt for 6.7x
@@ -404,7 +398,6 @@ function _loadSettings() {
           loadGoldHENVer();
           getReloadAfterJb();
           autoJailbreak();
-          updateBareboneJB();
           loadExploitChain();
           _context0.n = 3;
           break;

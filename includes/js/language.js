@@ -143,7 +143,6 @@ function applyLanguage(lang) {
         updateText(ui.aboutPopup.querySelector('#payloaderFirmwareSemiSupported i'), 'payloaderFirmwareSemiSupported');
         updateText(ui.aboutPopup.querySelector('#creditsHeader'), 'creditsHeader');
     }
-    updateText(ui.bareboneJbBtn, 'bareboneJB');
 
     // Fan Threshold
     if (ui.chooseFanThreshold) {

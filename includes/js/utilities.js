@@ -1,4 +1,4 @@
-// Shared functions used by both index.html and exploit.html.
+// Shared functions used by index.html.
 
 function sleep(ms) {
     ms = ms || 0;
@@ -43,7 +43,7 @@ function isHttps() {
     return window.location.protocol === 'https:';
 }
 
-// Works in both index.html and exploit.html
+// Works on the single page
 function log(message, color, consoleEl) {
     consoleEl = consoleEl
         || (typeof ui !== 'undefined' && ui.consoleElement)

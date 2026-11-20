@@ -5,10 +5,19 @@
 window.addEventListener('load', function () {
     var isPS4User = isPS4Console();
 
-    // check for applicationCache only on PS4
-    if (isPS4User && (!window.applicationCache || window.applicationCache.status === window.applicationCache.UNCACHED) && !devMode) {
-        // Not cached! Redirecting...
-        window.location.href = testModeUrl('./cache.html');
+    // Only go caching when this page really runs from the cache.
+    // "UNCACHED" also happens when the page was cached a moment ago but this
+    // fresh load has not claimed it yet - then redirecting would loop forever.
+    var ac = window.applicationCache;
+    var reallyUncached = !ac || ac.status === 0;
+    if (isPS4User && reallyUncached && !devMode) {
+        // Never bounce a second time in the same tab.
+        var guard = null;
+        try { guard = sessionStorage.getItem('hubCacheRedirect'); } catch (e) {}
+        if (!guard) {
+            try { sessionStorage.setItem('hubCacheRedirect', '1'); } catch (e) {}
+            window.location.href = testModeUrl('./cache.html');
+        }
     }
 });
 

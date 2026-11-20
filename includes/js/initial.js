@@ -14,7 +14,6 @@ var user = {
   ip: storage.getString('PayLoaderIp', window.location.hostname),
   ps4Fw: storage.getString('ps4Fw', null),                                  // Used for sending payload over network
   clearLog: true,
-  bareboneJB: storage.getBoolean('bareboneJB', false),
   exploitChain: storage.getNumber('exploitChain', null),                    // Exploit chain method
   blockJailbreak: false,                                                    // Prevent double jailbreak execution
 };
@@ -75,8 +74,6 @@ var ui = {
   shutdownServerBtn: document.getElementById('shutdownServerBtn'),
   autoJbRetry: document.getElementById('autoJbRetry'),
   autoJb: document.getElementById('autoJb'),
-  bareboneJbBtn: document.getElementById('bareboneJB'),
-  bareboneJBInput: document.getElementById('bareboneJBInput'),
   exploitChainTitle: document.getElementById('exploitChainTitle'),
 
   // Settings elements

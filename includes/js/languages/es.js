@@ -11,7 +11,7 @@ window.lang = {
     "payloadsToolsHeader": "Herramientas",
     "payloadsHomebrewHeader": "Homebrew",
     "payloadsLinuxHeader": "Linux",
-    "aboutVersion": "Version: 2.0",
+    "aboutVersion": "Version: 1.2",
     "aboutDescription": "Una interfaz web completa para hacer jailbreak en tu PS4.",
     "closeButton": "Cerrar",
     "ps4FirmwareSupportedHeader": "Firmware de PS4 soportado",

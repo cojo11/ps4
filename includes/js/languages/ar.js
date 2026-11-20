@@ -11,7 +11,7 @@ window.lang = {
   "payloadsToolsHeader": "الأدوات",
   "payloadsHomebrewHeader": "تطبيقات",
   "payloadsLinuxHeader": "لينكس",
-  "aboutVersion": "الإصدار: 2.0",
+  "aboutVersion": "الإصدار: 1.2",
   "aboutDescription": "واجهة ويب غنية بالمميزات لتعديل البلايستايشن 4",
   "hostedOn": "مستضاف على GitHub",
   "closeButton": "إغلاق",
