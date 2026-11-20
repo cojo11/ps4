@@ -132,10 +132,6 @@
                 <input type="checkbox" id="reloadAfterJbInput" onchange="setReloadAfterJb(this.checked)"> Reload page after jailbreak
             </label>
 
-            <label id="bareboneJBOption">
-                <input type="checkbox" id="bareboneJBInput" onchange="setBareboneJB(this.checked)"> <span id="bareboneJB">Barebone jailbreak</span>
-            </label>
-
             <div id="exploitChainTitle">Exploit chain</div>
             <div id="chooseExploitChain" class="radio-col">
                 <label id="bpfDoubleFreeExp"><input type="radio" name="exploitChain" value="8" onchange="exploitChain(this.value)"> Bpf Double Free</label>
@@ -247,7 +243,7 @@
     <script src="./includes/js/autoJbRetry.js"></script>
     <script src="./includes/js/events.js"></script>
     <script src="./includes/js/cache.js"></script>
-    <!-- Same modern/legacy switch exploit.html uses, so old PS4 WebKit still works -->
+    <!-- Modern/legacy script switch, so old PS4 WebKit still works -->
     <script id="main-logic-loader">
         (function () {
             var isModern = 'noModule' in document.createElement('script');
