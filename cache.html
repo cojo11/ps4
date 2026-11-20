@@ -49,9 +49,19 @@
                 }
             } else if (data.type === 'CACHE_COMPLETE' || data.type === 'CACHE_EXISTS') {
                 fillEl.style.width = '100%';
-                statusEl.textContent = data.type === 'CACHE_EXISTS' ? 'Already cached! Redirecting...' : 'Done! Redirecting...';
+                statusEl.innerHTML = (data.type === 'CACHE_EXISTS' ? 'Already cached! Redirecting...' : 'Done! Redirecting...') +
+                    '<br><br><a href="' + mainPage + '">Continue to Playstation Hub</a>';
                 setTimeout(function () {
                     try { sessionStorage.removeItem('hubCacheRedirect'); } catch (e) {}
+                    // This page itself lives inside the AppCache. A redirect can be
+                    // swallowed by the cache, so leave through the parent/opener if we
+                    // are not the top window, and fall back to location.replace.
+                    try {
+                        if (window.top && window.top !== window) {
+                            window.top.location.replace(mainPage);
+                            return;
+                        }
+                    } catch (e) {}
                     window.location.replace(mainPage);
                 }, 1000);
             } else if (data.type === 'CACHE_CHECKING') {
