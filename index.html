@@ -73,29 +73,10 @@
                 <pre id="console"><center>Waiting for user action...</center></pre>
             </div>
 
-            <div id="payloadsSection" class="payloads-section">
-                <h2 id="payloads-section-title">Payloads</h2>
-
-                <div class="tabs">
-                    <button type="button" id="tools-tab" aria-selected="true">Tools</button>
-                    <button type="button" id="homebrew-tab" aria-selected="false">Homebrew</button>
-                    <button type="button" id="linux-tab" aria-selected="false">Linux</button>
-                    <button type="button" id="advanced-tab" aria-selected="false">Advanced</button>
-                    <button type="button" id="custom-tab" aria-selected="false">Custom</button>
-                </div>
-
-                <div id="payloadsGrid">
-                    <div id="tools" class="payloads-grid"></div>
-                </div>
-                <div id="homebrew" class="payloads-grid hidden"></div>
-                <div id="linux" class="payloads-grid hidden"></div>
-                <div id="advanced" class="payloads-grid hidden"></div>
-                <div id="custom" class="custom-tab hidden">
-                    <p id="customPayloadUpload">Upload a custom payload file</p>
-                    <input type="file" id="customPayloadInput">
-                    <button type="button" id="sendCustomPayloadBtn">Send</button>
-                </div>
-            </div>
+            <!-- Homebrew/Tools/Linux/Advanced/Custom entfernt: nur der Jailbreak bleibt.
+                 Der Rahmen bleibt als leerer Container, damit die vorhandene Logik
+                 (cleanUp blendet ihn aus) nicht ins Leere greift. -->
+            <div id="payloadsSection" class="payloads-section hidden"></div>
           </div>
         </section>
     </main>
@@ -153,10 +134,6 @@
 
             <label id="bareboneJBOption">
                 <input type="checkbox" id="bareboneJBInput" onchange="setBareboneJB(this.checked)"> <span id="bareboneJB">Barebone jailbreak</span>
-            </label>
-
-            <label id="advancedPayloads">
-                <input type="checkbox" id="advancedPayloadsInput" onchange="setAdvancedPayloads(this.checked)"> <span id="showAdvancedPayloads">Show advanced payloads</span>
             </label>
 
             <div id="exploitChainTitle">Exploit chain</div>
