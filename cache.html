@@ -51,6 +51,7 @@
                 fillEl.style.width = '100%';
                 statusEl.textContent = data.type === 'CACHE_EXISTS' ? 'Already cached! Redirecting...' : 'Done! Redirecting...';
                 setTimeout(function () {
+                    try { sessionStorage.removeItem('hubCacheRedirect'); } catch (e) {}
                     window.location.replace(mainPage);
                 }, 1000);
             } else if (data.type === 'CACHE_CHECKING') {
@@ -74,6 +75,15 @@
         // Load the firmware-based cache page into the hidden iframe
         statusEl.textContent = 'Starting cache for firmware ' + (fwVersion || 'unknown') + '...';
         frame.src = targetPage;
+
+        // Safety net: if the iframe never reports anything, do not sit here forever.
+        var gotMessage = false;
+        window.addEventListener('message', function () { gotMessage = true; }, false);
+        setTimeout(function () {
+            if (gotMessage) return;
+            statusEl.innerHTML = 'No answer from the cache page.<br><br>' +
+                '<a href="' + mainPage + '">Continue without offline cache</a>';
+        }, 20000);
     </script>
 </body>
 
