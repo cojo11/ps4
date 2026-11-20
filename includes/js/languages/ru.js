@@ -11,7 +11,7 @@ window.lang = {
     "payloadsToolsHeader": "Инструменты",
     "payloadsHomebrewHeader": "Homebrew",
     "payloadsLinuxHeader": "Linux",
-    "aboutVersion": "Версия: 1.2",
+    "aboutVersion": "Версия: 1.3",
     "aboutDescription": "Многофункциональный веб-интерфейс для джейлбрейка PS4.",
     "closeButton": "Закрыть",
     "ps4FirmwareSupportedHeader": "Поддерживаемые версии ПО",

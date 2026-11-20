@@ -11,7 +11,7 @@ window.lang = {
     "payloadsToolsHeader": "Araçlar",
     "payloadsHomebrewHeader": "Homebrew",
     "payloadsLinuxHeader": "Linux",
-    "aboutVersion": "Versiyon: 1.2",
+    "aboutVersion": "Versiyon: 1.3",
     "aboutDescription": "PS4'ünüzü jailbreak yapmanızı sağlayan, zengin özelliklere sahip bir web arayüzü.",
     "closeButton": "Kapat",
     "ps4FirmwareSupportedHeader": "Desteklenen PS4 Firmware sürümleri",

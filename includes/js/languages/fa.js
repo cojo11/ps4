@@ -11,7 +11,7 @@ window.lang = {
     "payloadsToolsHeader": "ابزارها",
     "payloadsHomebrewHeader": "هومبرو",
     "payloadsLinuxHeader": "لینوکس",
-    "aboutVersion": "نسخه: 1.2",
+    "aboutVersion": "نسخه: 1.3",
     "aboutDescription": "یک رابط وب غنی از امکانات برای جیلبریک کردن PS4.",
     "closeButton": "بستن",
     "ps4FirmwareSupportedHeader": "فریمورهای پشتیبانی‌شده PS4",

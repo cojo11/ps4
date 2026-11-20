@@ -1,6 +1,6 @@
 CACHE MANIFEST
 # Playstation Hub
-# v5 - regenerated: only files that really exist
+# v7 - 1.3: automatic AppCache trip removed
 
 CACHE:
 ../../../includes/caches/cachePayloads.html

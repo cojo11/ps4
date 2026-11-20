@@ -13,7 +13,7 @@ window.lang = {
     "payloadsLinuxHeader": "Linux",
     "payloadsCustomHeader": "自定义",
     "customPayloadHint": "上传自定义 payload 文件。",
-    "aboutVersion": "版本：1.2",
+    "aboutVersion": "版本：1.3",
     "aboutDescription": "一个功能丰富的 PS4 越狱网页界面。",
     "closeButton": "关闭",
     "ps4FirmwareSupportedHeader": "支持的 PS4 固件",

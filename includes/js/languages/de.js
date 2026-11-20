@@ -13,7 +13,7 @@ window.lang = {
     "payloadsLinuxHeader": "Linux",
     "payloadsCustomHeader": "Benutzerdefiniert",
     "customPayloadUpload": "Eigene Payload-Datei hochladen",
-    "aboutVersion": "Version: 1.2",
+    "aboutVersion": "Version: 1.3",
     "aboutDescription": "Eine funktionsreiche Weboberfl\u00e4che f\u00fcr den Jailbreak deiner PS4.",
     "hostedOn": "Gehostet auf GitHub",
     "closeButton": "Schlie\u00dfen",
