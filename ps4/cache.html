@@ -4,21 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-    <title>Playstation Hub - Caching</title>
+    <title>All4One Hub - Caching</title>
     <meta name="author" content="ArabPixel">
+    <link rel="stylesheet" href="./includes/css/colors/default.css">
+    <link rel="stylesheet" href="./includes/css/layouts/index.css">
     <link rel="stylesheet" href="./includes/css/cache.css">
 </head>
 
-<body>
+<body class="bg-gray-900 text-white">
     <main class="mainContainer">
         <section class="cache-screen">
-            <div class="cache-title">Caching Playstation Hub</div>
+            <div class="cache-title">Caching All4One Hub</div>
             <div class="progress-bar-wrap">
                 <div class="progress-bar-fill" id="progressFill"></div>
             </div>
             <div class="cache-subtitle" id="cacheStatus">Preparing...</div>
         </section>
-        <div class="absolute bottom-10">Firmware-Based Caching System</div>
+        <div class="absolute bottom-10 text-center w-full">Firmware-Based Caching System</div>
     </main>
 
     <iframe id="cacheFrame" src="about:blank"></iframe>
@@ -31,7 +33,6 @@
         var targetPage = getCachePage(fwVersion);
 
         var statusEl = document.getElementById('cacheStatus');
-        statusEl.style.whiteSpace = 'normal';
         var fillEl = document.getElementById('progressFill');
         var frame = document.getElementById('cacheFrame');
 
@@ -40,34 +41,49 @@
             var data = event.data;
             if (!data || !data.type) return;
 
-            if (data.type === 'CACHE_PROGRESS') {
+            if (data.type === 'CACHE_CHECKING') {
+                statusEl.textContent = 'Checking for updates...';
+
+            } else if (data.type === 'CACHE_DOWNLOADING') {
+                statusEl.textContent = 'Caching new files...';
+
+            } else if (data.type === 'CACHE_PROGRESS') {
                 if (data.percent >= 0) {
                     fillEl.style.width = data.percent + '%';
-                    statusEl.textContent = 'Downloading... ' + data.percent + '%';
+                    statusEl.textContent = 'Caching the update... ' + data.percent + '%';
+                } else if (data.loaded && data.total) {
+                    statusEl.textContent = 'Caching the update... (' + data.loaded + ' of ' + data.total + ')';
                 } else {
-                    statusEl.textContent = 'Downloading... (' + data.loaded + ' of ' + data.total + ')';
+                    statusEl.textContent = 'Caching the updates...';
                 }
-            } else if (data.type === 'CACHE_COMPLETE' || data.type === 'CACHE_EXISTS') {
+
+            } else if (data.type === 'CACHE_COMPLETE') {
                 fillEl.style.width = '100%';
-                statusEl.textContent = data.type === 'CACHE_EXISTS' ? 'Already cached! Redirecting...' : 'Done! Redirecting...';
+                statusEl.textContent = 'Cache complete! Redirecting...';
                 setTimeout(function () {
                     window.location.replace(mainPage);
                 }, 1000);
-            } else if (data.type === 'CACHE_CHECKING') {
-                statusEl.textContent = 'Checking cache...';
-            } else if (data.type === 'CACHE_DOWNLOADING') {
-                statusEl.textContent = 'Caching files...';
-            } else if (data.type === 'CACHE_DIAGNOSING') {
-                statusEl.textContent = 'AppCache reported an error. Checking which files are missing...';
+
+            } else if (data.type === 'CACHE_UPDATED') {
+                fillEl.style.width = '100%';
+                statusEl.textContent = 'Updated to latest version! Redirecting...';
+                setTimeout(function () {
+                    window.location.replace(mainPage);
+                }, 1000);
+
+            } else if (data.type === 'CACHE_UP_TO_DATE') {
+                fillEl.style.width = '100%';
+                statusEl.textContent = 'Already up to date! Redirecting...';
+                setTimeout(function () {
+                    window.location.replace(mainPage);
+                }, 800);
+
             } else if (data.type === 'CACHE_ERROR') {
                 var reason = data.reason || 'Unknown error';
-                var details = '';
-                if (data.broken && data.broken.length) {
-                    details = '<br><br>Not reachable:<br>' + data.broken.slice(0, 15).join('<br>');
-                }
-                statusEl.innerHTML = 'Cache error: ' + reason + details +
-                    '<br><br><a href="' + mainPage + '">Continue without offline cache</a>';
-                // Kein automatischer Sprung: sonst sieht man die Ursache nicht.
+                statusEl.textContent = 'Cache error: ' + reason;
+                setTimeout(function () {
+                    window.location.replace(mainPage);
+                }, 3000);
             }
         }, false);
 
