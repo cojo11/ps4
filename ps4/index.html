@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title>Playstation Hub</title>
+    <meta name="author" content="ArabPixel">
+    <link rel="stylesheet" href="./includes/css/layouts/index.css" id="base-stylesheet">
+    <link rel="stylesheet" href="./includes/css/layouts/index.css" id="main-stylesheet">
+    <link rel="stylesheet" href="./includes/css/colors/default.css" id="color-stylesheet">
+</head>
+
+<body>
+    <main class="mainContainer">
+
+        <!-- ============ START SCREEN ============ -->
+        <section id="initial-screen" class="initial-screen">
+            <div id="header1" class="top-bar">
+                <button type="button" class="about-btn" title="About" onclick="aboutPopup()">i</button>
+                <button type="button" class="settings-btn" title="Settings" onclick="settingsPopup()">&#9881;</button>
+                <button type="button" class="theme-btn" title="Language" onclick="themePopup()">&#9998;</button>
+            </div>
+
+            <div class="hub-title">Playstation Hub</div>
+
+            <p id="PS4FW" class="ps4-fw-status"></p>
+
+            <div id="henSelection" class="choose-hen">
+                <h3>Choose your HEN</h3>
+                <div class="radio-row">
+                    <label id="goldhen-label-initial">
+                        <input type="radio" name="hen" value="GoldHEN" checked onchange="saveJbFlavor('hen', this.value)"> GoldHEN
+                    </label>
+                    <label id="PS4HEN-label-initial">
+                        <input type="radio" name="hen" value="PS4HEN" onchange="saveJbFlavor('hen', this.value)"> PS4HEN
+                    </label>
+                    <label id="nexHEN-label-initial">
+                        <input type="radio" name="hen" value="nexHEN" onchange="saveJbFlavor('hen', this.value)"> nexHEN
+                    </label>
+                </div>
+            </div>
+
+            <div id="autoJbContainer" class="option-row">
+                <label id="autoJbOption">
+                    <input type="checkbox" id="autoJb" onchange="setAutoJb(this.checked)"> <span id="autoJbText">Auto-Jailbreak</span>
+                </label>
+                <label id="autoJbRetryText">
+                    <input type="checkbox" id="autoJbRetry" checked onchange="setAutoJbRetry(this.checked)"> Auto retry on failure
+                </label>
+            </div>
+
+            <button type="button" id="stopAutoJb" class="hidden">Stop</button>
+
+            <button type="button" id="exploitRun" class="primary-btn">
+                <span class="btn-cross">&#10005;</span> Run Jailbreak
+            </button>
+
+            <p id="successRate" class="success-rate">Success Rate: -</p>
+
+            <div id="scrollDown" class="scroll-down">&#9660;</div>
+        </section>
+
+        <!-- ============ EXPLOIT SCREEN ============ -->
+        <section id="exploit-main-screen" class="exploit-screen">
+          <div id="exploitContainer">
+            <div id="exploit-status-panel">
+                <h2>Exploit Status</h2>
+                <p id="state"></p>
+            </div>
+
+            <div id="DebugConsole" class="debug-console">
+                <pre id="console"><center>Waiting for user action...</center></pre>
+            </div>
+
+            <div id="payloadsSection" class="payloads-section">
+                <h2 id="payloads-section-title">Payloads</h2>
+
+                <div class="tabs">
+                    <button type="button" id="tools-tab" aria-selected="true">Tools</button>
+                    <button type="button" id="homebrew-tab" aria-selected="false">Homebrew</button>
+                    <button type="button" id="linux-tab" aria-selected="false">Linux</button>
+                    <button type="button" id="advanced-tab" aria-selected="false">Advanced</button>
+                    <button type="button" id="custom-tab" aria-selected="false">Custom</button>
+                </div>
+
+                <div id="payloadsGrid">
+                    <div id="tools" class="payloads-grid"></div>
+                </div>
+                <div id="homebrew" class="payloads-grid hidden"></div>
+                <div id="linux" class="payloads-grid hidden"></div>
+                <div id="advanced" class="payloads-grid hidden"></div>
+                <div id="custom" class="custom-tab hidden">
+                    <p id="customPayloadUpload">Upload a custom payload file</p>
+                    <input type="file" id="customPayloadInput">
+                    <button type="button" id="sendCustomPayloadBtn">Send</button>
+                </div>
+            </div>
+          </div>
+        </section>
+    </main>
+
+    <!-- ============ POPUPS ============ -->
+    <div id="about-popup-overlay" class="popup-overlay hidden">
+        <div id="about-popup" class="popup">
+            <h2>About</h2>
+            <p id="aboutVersion"></p>
+            <p id="aboutDescription"></p>
+            <p id="hostedOn"></p>
+            <div id="PS4FWOK">
+                <h3 id="ps4FirmwareSupportedHeader"></h3>
+                <ul id="listfw">
+                    <li id="fw450-507">4.50 - 5.07</li>
+                    <li id="fw6xx">6.70 - 6.72</li>
+                    <li id="fw7xx">7.00 - 7.55</li>
+                    <li id="fw8xx">8.00 - 8.52</li>
+                    <li id="fw9xx">9.00 - 9.60</li>
+                    <li id="fw10xx">10.00 - 10.71</li>
+                    <li id="fw11xx">11.00 - 11.52</li>
+                    <li id="fw12xx">12.00 - 12.52</li>
+                    <li id="fw1300">13.00</li>
+                    <li id="fw1302-1352">13.02 - 13.52</li>
+                    <li id="fw140x">14.00 - 14.02</li>
+                </ul>
+            </div>
+            <p id="payloaderFirmwareSemiSupported"><i></i></p>
+            <h3 id="creditsHeader">Credits</h3>
+            <button type="button" id="close-about" onclick="aboutPopup()">Close</button>
+        </div>
+    </div>
+
+    <div id="settings-popup-overlay" class="popup-overlay hidden">
+        <div id="settings-popup" class="popup">
+            <h2 id="settingsBtnTitle">Settings</h2>
+
+            <div id="ghVer">GoldHEN version</div>
+            <details id="chooseGoldHEN">
+                <summary id="otherVer">Other versions</summary>
+                <div class="radio-col">
+                    <label><input type="radio" name="goldhen" value="GHv2.4b18.14" onchange="setGoldHENVer(this.value)"> GHv2.4b18.14</label>
+                    <label><input type="radio" name="goldhen" value="GHv2.4b18.13" onchange="setGoldHENVer(this.value)"> GHv2.4b18.13</label>
+                    <label><input type="radio" name="goldhen" value="GHv2.4b18.12" onchange="setGoldHENVer(this.value)"> GHv2.4b18.12</label>
+                    <label><input type="radio" name="goldhen" value="GHv2.4b18.10" onchange="setGoldHENVer(this.value)"> GHv2.4b18.10</label>
+                    <label><input type="radio" name="goldhen" value="GHv2.4b18.9" onchange="setGoldHENVer(this.value)"> GHv2.4b18.9</label>
+                    <label><input type="radio" name="goldhen" value="GHv2.4b18.8" onchange="setGoldHENVer(this.value)"> GHv2.4b18.8</label>
+                </div>
+            </details>
+            <p id="latestVer">Latest version is selected by default.</p>
+
+            <label id="reloadAfterJbText">
+                <input type="checkbox" id="reloadAfterJbInput" onchange="setReloadAfterJb(this.checked)"> Reload page after jailbreak
+            </label>
+
+            <label id="bareboneJBOption">
+                <input type="checkbox" id="bareboneJBInput" onchange="setBareboneJB(this.checked)"> <span id="bareboneJB">Barebone jailbreak</span>
+            </label>
+
+            <label id="advancedPayloads">
+                <input type="checkbox" id="advancedPayloadsInput" onchange="setAdvancedPayloads(this.checked)"> <span id="showAdvancedPayloads">Show advanced payloads</span>
+            </label>
+
+            <div id="exploitChainTitle">Exploit chain</div>
+            <div id="chooseExploitChain" class="radio-col">
+                <label id="bpfDoubleFreeExp"><input type="radio" name="exploitChain" value="8" onchange="exploitChain(this.value)"> Bpf Double Free</label>
+                <label id="badHoistExp"><input type="radio" name="exploitChain" value="2" onchange="exploitChain(this.value)"> BadHoist</label>
+                <label id="modularLapseExp"><input type="radio" name="exploitChain" value="0" onchange="exploitChain(this.value)"> <span id="modularLapse">PSFree Lapse Modular</span></label>
+                <label id="bundleLapseExp"><input type="radio" name="exploitChain" value="1" onchange="exploitChain(this.value)"> <span id="bundleLapse">PSFree Lapse Bundle</span></label>
+                <label id="cssFontFaceNetCtrlExp"><input type="radio" name="exploitChain" value="3" onchange="exploitChain(this.value)"> CSSFontFace Netctrl</label>
+                <label id="cssFontFaceLapseExp"><input type="radio" name="exploitChain" value="4" onchange="exploitChain(this.value)"> CSSFontFace Lapse</label>
+                <label id="slopKitLapseExp"><input type="radio" name="exploitChain" value="5" onchange="exploitChain(this.value)"> SlopKit Lapse</label>
+                <label id="slopKitNetCtrlExp"><input type="radio" name="exploitChain" value="6" onchange="exploitChain(this.value)"> SlopKit Netctrl</label>
+                <label id="relapseExp"><input type="radio" name="exploitChain" value="7" onchange="exploitChain(this.value)"> Relapse</label>
+                <label id="slopkitAfterglowExp"><input type="radio" name="exploitChain" value="9" onchange="exploitChain(this.value)"> SlopKit Afterglow</label>
+            </div>
+
+            <div id="ps4IpRow">
+                <label for="ps4IpInput">PS4 IP</label>
+                <input type="text" id="ps4IpInput" placeholder="192.168.1.50">
+                <label for="ps4FwSelect">PS4 firmware</label>
+                <select id="ps4FwSelect">
+                    <option value="5.05">5.05</option>
+                    <option value="6.72">6.72</option>
+                    <option value="7.55">7.55</option>
+                    <option value="9.00">9.00</option>
+                    <option value="9.60">9.60</option>
+                    <option value="10.71">10.71</option>
+                    <option value="11.52">11.52</option>
+                    <option value="12.52">12.52</option>
+                    <option value="13.00">13.00</option>
+                    <option value="13.52">13.52</option>
+                    <option value="14.00">14.00</option>
+                    <option value="14.02">14.02</option>
+                </select>
+                <button type="button" id="scanPayLoader" onclick="ipGuess()">Scan for Payload Loader</button>
+                <button type="button" id="shutdownServerBtn" onclick="shutdownServer()">Shutdown server</button>
+            </div>
+
+            <button type="button" id="updateCache" onclick="window.location.href = testModeUrl('./cache.html')">Update cache</button>
+            <button type="button" id="close-settings" onclick="settingsPopup()">Close</button>
+        </div>
+    </div>
+
+    <div id="theme-popup-overlay" class="popup-overlay hidden">
+        <div id="theme-popup" class="popup">
+            <h2 id="themeSettingsHeader">Language</h2>
+
+            <div id="chooselang">
+                <h3 id="languageHeader">Language</h3>
+                <div class="radio-col">
+                    <label><input type="radio" name="language" value="en" onchange="saveLanguage(this.value)"> English</label>
+                    <label><input type="radio" name="language" value="de" onchange="saveLanguage(this.value)"> Deutsch</label>
+                    <label><input type="radio" name="language" value="es" onchange="saveLanguage(this.value)"> Espa&ntilde;ol</label>
+                    <label><input type="radio" name="language" value="tr" onchange="saveLanguage(this.value)"> T&uuml;rk&ccedil;e</label>
+                    <label><input type="radio" name="language" value="ru" onchange="saveLanguage(this.value)"> &#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081;</label>
+                    <label><input type="radio" name="language" value="ar" onchange="saveLanguage(this.value)"> &#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;</label>
+                    <label><input type="radio" name="language" value="fa" onchange="saveLanguage(this.value)"> &#1601;&#1575;&#1585;&#1587;&#1740;</label>
+                    <label><input type="radio" name="language" value="zh-cn" onchange="saveLanguage(this.value)"> &#20013;&#25991;</label>
+                </div>
+            </div>
+
+            <button type="button" id="close-theme" onclick="themePopup()">Close</button>
+        </div>
+    </div>
+
+    <!-- HEN radios as referenced by HENs.js (the PS4 runs the exploit on the
+         same page, so there is no second selection UI) -->
+    <div id="henSelection-exploit" class="hidden">
+        <label id="goldhen-label-exploit"><input type="radio" name="hen2" value="GoldHEN"> GoldHEN</label>
+        <label id="PS4HEN-label-exploit"><input type="radio" name="hen2" value="PS4HEN"> PS4HEN</label>
+        <label id="nexHEN-label-exploit"><input type="radio" name="hen2" value="nexHEN"> nexHEN</label>
+    </div>
+    <div id="optionsHeader" class="hidden">Options</div>
+
+    <div id="choose-fanThreshold-overlay" class="popup-overlay hidden">
+        <div id="choose-fanThreshold" class="popup">
+            <h2 id="fanTitle">Fan threshold</h2>
+            <p id="fanDescription">Select the temperature at which the fan should spin up.</p>
+            <h3 id="selectTemp">Temperature</h3>
+            <div id="defaultTempDiv">
+                <button type="button" id="defaultTemp" onclick="loadFanThreshold('default')">Default</button>
+            </div>
+            <button type="button" onclick="loadFanThreshold('60')">60&deg;C</button>
+            <button type="button" onclick="loadFanThreshold('70')">70&deg;C</button>
+            <button type="button" onclick="loadFanThreshold('80')">80&deg;C</button>
+            <button type="button" onclick="loadFanThreshold('85')">85&deg;C</button>
+            <button type="button" id="close-fanChoose" onclick="chooseFanThreshold()">Close</button>
+        </div>
+    </div>
+
+    <div id="header2" class="top-bar header2 hidden">
+        <button type="button" class="about-btn" onclick="aboutPopup()">i</button>
+        <button type="button" class="settings-btn" onclick="settingsPopup()">&#9881;</button>
+        <button type="button" class="theme-btn" onclick="themePopup()">&#9998;</button>
+    </div>
+
+    <!-- ============ SCRIPTS (order matters) ============ -->
+    <script src="./includes/js/HENs.js"></script>
+    <script src="./includes/js/storage.js"></script>
+    <script src="./includes/js/testMode.js"></script>
+    <script src="./includes/js/firmware.js"></script>
+    <script src="./includes/js/utilities.js"></script>
+    <script src="./includes/js/initial.js"></script>
+    <script src="./includes/js/languages/en.js"></script>
+    <script src="./includes/js/payloadsList.js"></script>
+    <script src="./includes/js/deliverPayload.js"></script>
+    <script src="./includes/js/checkFw.js"></script>
+    <script src="./includes/js/design.js"></script>
+    <script src="./includes/js/language.js"></script>
+    <script src="./includes/js/payloadsHandler.js"></script>
+    <script src="./includes/js/autoJbRetry.js"></script>
+    <script src="./includes/js/events.js"></script>
+    <script src="./includes/js/cache.js"></script>
+    <!-- Same modern/legacy switch exploit.html uses, so old PS4 WebKit still works -->
+    <script id="main-logic-loader">
+        (function () {
+            var isModern = 'noModule' in document.createElement('script');
+            var scriptPath = isModern ? './includes/js/jailbreak.js' : './includes/js/jailbreak-legacy.js';
+            document.write('<script src="' + scriptPath + '"><\/script>');
+        })();
+    </script>
+
+    <script>
+        window.onload = function () {
+            // one fixed look: no saved layout / color theme is applied any more
+            var base = document.getElementById('base-stylesheet');
+            if (base) base.setAttribute('href', './includes/css/layouts/index.css');
+            var main = document.getElementById('main-stylesheet');
+            if (main) main.setAttribute('href', './includes/css/layouts/index.css');
+            loadSettings();
+        };
+    </script>
+</body>
+
+</html>
