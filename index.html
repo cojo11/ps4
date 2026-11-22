@@ -47,7 +47,7 @@
             if (ua.match(/PLAYSTATION 3/i)) {
 
                 // PS3 landet auf dem eigenen All4One Hub im Unterordner /ps4/ps3
-                redirectUrl = "./ps4/ps3";
+                redirectUrl = "./ps4/ps3/";
 
             } 
 
@@ -56,7 +56,7 @@
             else if (ua.match(/PlayStation\s+4/i)) {
 
                 // PS4 landet auf dem eigenen All4One Hub im Unterordner /ps4/
-                redirectUrl = "./ps4/ps3/";
+                redirectUrl = "./ps4/";
             }
 
 
@@ -67,7 +67,7 @@
 
             } else {
 
-                document.getElementById("timer-box").innerHTML = "<br><a href='./ps4/' style='color:#0078ff;'>[All4One Hub PS4]</a> | <a href='.ps4/ps3/' style='color:#0078ff;'>[PS3 Flashwriter]</a>";
+                document.getElementById("timer-box").innerHTML = "<br><a href='./ps4/' style='color:#0078ff;'>[All4One Hub PS4]</a> | <a href='./ps4/ps3/' style='color:#0078ff;'>[PS3 Flashwriter]</a>";
 
             }
 
