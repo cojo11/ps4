@@ -6,7 +6,7 @@
 
     <meta charset="UTF-8">
 
-    <title>PS3 &amp; PS4 Hub</title>
+    <title>All4One Hub &ndash; PS3 &amp; PS4</title>
 
     <style>
 
@@ -26,68 +26,98 @@
 
         .dev-work { color: #a0aec0; }
 
+        /* --- Auswahl-Buttons ------------------------------------- */
+        .choices {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
+            -webkit-justify-content: center;
+            justify-content: center;
+            margin: 6px 0 4px 0;
+        }
+
+        .choice {
+            display: block;
+            width: 190px;
+            margin: 7px;
+            padding: 18px 14px;
+            text-align: center;
+            text-decoration: none;
+            background: #32353a;
+            border: 1px solid #4a4d53;
+            border-radius: 10px;
+            -webkit-transition: all 0.15s;
+            transition: all 0.15s;
+        }
+
+        .choice:hover,
+        .choice:focus {
+            background: #3a3d43;
+            border-color: #0078ff;
+        }
+
+        .choice .ico {
+            display: block;
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: #0078ff;
+        }
+
+        .choice .name {
+            display: block;
+            font-size: 16px;
+            font-weight: 700;
+            color: #e6e7e9;
+            margin-bottom: 5px;
+        }
+
+        .choice .what {
+            display: block;
+            font-size: 12px;
+            color: #8b8f96;
+            line-height: 1.4;
+        }
+
+        .choice .fw {
+            display: block;
+            margin-top: 7px;
+            font-size: 11px;
+            color: #7fd0a0;
+        }
+
     </style>
 
     <script>
 
-        var seconds = 5;
-
-        var redirectUrl = "";
-
-
+        // Keine automatische Weiterleitung: der Nutzer klickt selbst.
 
         function startRouter() {
 
             var ua = navigator.userAgent;
 
-            
+            var ps3 = ua.match(/PLAYSTATION 3/i);
 
-            // 1. ERKENNUNG: PlayStation 3
+            var ps4 = ua.match(/PlayStation\s+4/i);
 
-            if (ua.match(/PLAYSTATION 3/i)) {
+            // Nur ein Hinweis, wohin es auf dieser Konsole geht - geklickt wird selbst.
 
-                // PS3 landet auf dem PS3HEN-Installer im Unterordner /hen/
-                redirectUrl = "./hen/";
+            var hint = document.getElementById("timer-box");
 
-            } 
+            if (!hint) return;
 
-            // 2. ERKENNUNG: PlayStation 4
+            if (ps4) {
 
-            else if (ua.match(/PlayStation\s+4/i)) {
+                hint.innerHTML = "PlayStation 4 erkannt &ndash; <b>PS4 Jailbreak</b> w&auml;hlen";
 
-                // PS4 landet auf dem eigenen All4One Hub im Unterordner /ps4/
-                redirectUrl = "./ps4/";
-            }
+            } else if (ps3) {
 
-
-
-            if (redirectUrl !== "") { 
-
-                countdownTimer(); 
+                hint.innerHTML = "PlayStation 3 erkannt &ndash; <b>PS3 Hen</b> w&auml;hlen";
 
             } else {
 
-                document.getElementById("timer-box").innerHTML = "<br><a href='./ps4/' style='color:#0078ff;'>[All4One Hub PS4]</a> | <a href='./hen/' style='color:#0078ff;'>[PS3 HEN]</a> | <a href='./ps3/' style='color:#0078ff;'>[PS3 Flash Writer]</a>";
-
-            }
-
-        }
-
-
-
-        function countdownTimer() {
-
-            if (seconds > 0) {
-
-                document.getElementById("timer-box").innerHTML = "Weiterleitung in " + seconds + " Sekunden...";
-
-                seconds--;
-
-                setTimeout(countdownTimer, 1000);
-
-            } else {
-
-                window.location.replace(redirectUrl);
+                hint.innerHTML = "Am PC &ndash; einfach anklicken, was gebraucht wird";
 
             }
 
@@ -103,9 +133,34 @@
 
 <div class="container">
 
-    <h1>Universal Console Exploit Router</h1>
+    <h1>All4One Hub</h1>
 
-    <div id="timer-box" class="countdown">Initialisiere Weiterleitung...</div>
+    <div id="timer-box" class="countdown">Lade...</div>
+
+    <div class="choices">
+
+        <a class="choice" href="./ps4/">
+            <span class="ico">&#9670;</span>
+            <span class="name">PS4 Jailbreak</span>
+            <span class="what">Exploit-Host, HEN w&auml;hlen, jailbreaken</span>
+            <span class="fw">FW 4.50 &ndash; 14.02</span>
+        </a>
+
+        <a class="choice" href="./ps3/">
+            <span class="ico">&#9671;</span>
+            <span class="name">PS3 Patch</span>
+            <span class="what">Flash Writer &ndash; HFW vorbereiten</span>
+            <span class="fw">FW 4.82 &ndash; 4.93</span>
+        </a>
+
+        <a class="choice" href="./hen/">
+            <span class="ico">&#9679;</span>
+            <span class="name">PS3 Hen</span>
+            <span class="what">PS3HEN installieren und aktivieren</span>
+            <span class="fw">FW 4.80 &ndash; 4.93</span>
+        </a>
+
+    </div>
 
     <div class="credits-box">
 
