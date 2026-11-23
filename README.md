@@ -1,11 +1,12 @@
-# All4One Hub
+# One4All Hub
 
 Ein Jailbreak-Host für die PlayStation 4 — gebaut auf **WebKitty** von **ArabPixel**.
 
 Alles läuft im Browser der Konsole, ohne Installation, ohne PC. Firmware wird automatisch erkannt, die passende Exploit-Kette ausgewählt und der Jailbreak auf Knopfdruck gestartet.
 
 **Live:** [one4all-hub.de](http://one4all-hub.de/) → erkennt PS3 / PS4 automatisch
-**Direkt zum Hub:** [one4all-hub.de/ps4/](http://one4all-hub.de/ps4/)
+**PS4:** [one4all-hub.de/ps4/](http://one4all-hub.de/ps4/)
+**PS3 HEN:** [one4all-hub.de/hen/](http://one4all-hub.de/hen/)
 
 ---
 
@@ -74,7 +75,23 @@ Vor dem Jailbreak auf der PS3 diese Einstellungen ändern:
 5. **DNS manuell** — Primärer DNS auf `62.210.38.117` ändern, weiter
 6. Rest einfach weiter
 
-> **Hinweis:** Der PS3-Browser kann kein TLS 1.2. Er braucht eine HTTP-Verbindung ohne Zwangsumleitung. GitHub Pages und Cloudflare mit aktivem Proxy funktionieren dort nicht.
+> **Hinweis:** Der PS3-Browser kann kein TLS 1.2. Er braucht eine HTTP-Verbindung ohne Zwangsumleitung. Bei GitHub Pages muss dafür **Enforce HTTPS aus** sein (Settings → Pages).
+
+### PS3HEN installieren
+
+Der HEN-Installer liegt unter **[/hen/](http://one4all-hub.de/hen/)** und deckt **4.80 – 4.93** ab (CEX 4.80–4.82, DEX 4.82–4.84, CEX 4.83–4.93 HFW).
+
+1. PS3-Browser öffnen, `one4all-hub.de/hen/` aufrufen
+2. Oben steht die erkannte Firmware
+3. **Browser-Bestätigung beim Schließen ausschalten** (sonst bricht der Installer ab)
+4. **Initialize HEN installer** drücken
+5. Warten, bis „initialized successfully" erscheint
+6. **Install HEN** drücken
+7. Nach Erfolg neu starten
+
+Die `.p3t`-Payloads liegen pro Firmware im Unterordner und werden beim Laden automatisch geladen. Kein Python, kein Server – reines HTML und JavaScript.
+
+**Bekannter Fehler im Original, hier behoben:** Die Firmware-Liste im Installer hatte nur 35 Einträge, der Code fragte aber Index 35 für 4.93 ab. Dadurch meldete 4.93 fälschlich „nicht kompatibel". Ergänzt.
 
 ---
 
@@ -98,7 +115,7 @@ Dieser Hub wäre nicht möglich ohne die Arbeit vieler Menschen aus der PS4-Szen
 
 ### Vorlage und Grundlage
 
-- **[ArabPixel](https://github.com/ArabPixel)** — für **[WebKitty](https://github.com/ArabPixel/WebKitty)**, den Host, auf dem dieses Projekt aufbaut. Ohne WebKitty gäbe es All4One Hub nicht.
+- **[ArabPixel](https://github.com/ArabPixel)** — für **[WebKitty](https://github.com/ArabPixel/WebKitty)**, den Host, auf dem dieses Projekt aufbaut. Ohne WebKitty gäbe es One4All Hub nicht.
   Live: [webkitty.arabpixel.net](http://webkitty.arabpixel.net/) · Mirror: [arabpixel.gitlab.io/WebKitty](https://arabpixel.gitlab.io/WebKitty)
 
 ### Exploits
@@ -170,6 +187,6 @@ Teile des Codes gehören der Gruppe *anonymous*. Beiträge von *anonymous* werde
 ---
 
 <p align="center">
-  <strong>All4One Hub</strong> — gebaut mit Respekt vor der Szene.<br>
+  <strong>One4All Hub</strong> — gebaut mit Respekt vor der Szene.<br>
   Danke an <a href="https://github.com/ArabPixel/WebKitty">ArabPixel für WebKitty</a>.
 </p>

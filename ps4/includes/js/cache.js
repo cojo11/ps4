@@ -19,7 +19,7 @@ function terminateCache() {
         if (window.applicationCache.status === 3 || window.applicationCache.status === 1) {
             console.log("Terminating cache process to save memory...");
             window.applicationCache.abort();
-            var appTitle = (typeof projectName !== 'undefined') ? projectName : "All4One Hub";
+            var appTitle = (typeof projectName !== 'undefined') ? projectName : "One4All Hub";
             document.title = appTitle;
             window.applicationCache.removeEventListener("progress", null);
             window.applicationCache.oncached = null;

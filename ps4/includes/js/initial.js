@@ -1,7 +1,7 @@
 var autoJbInterval;
 var lastScrollY = 0;
 var lastSection = "initial";           // For custom snap scroll on the PS4
-var projectName = "All4One Hub";
+var projectName = "One4All Hub";
 var hideUnsupportedPayloads = false;
 var commonMax = 14.02;                 // max supported paylaods
 

@@ -29,7 +29,7 @@ var devMode = isTesting;
 var mainPage = devMode ? './?test=1' : './';
 
 if (!testModeStorageUpdated && window.console && typeof window.console.warn === 'function') {
-    window.console.warn('Could not save testing mode for this browser tab; internal All4One Hub links will still carry the mode.');
+    window.console.warn('Could not save testing mode for this browser tab; internal One4All Hub links will still carry the mode.');
 }
 
 function testModeUrl(url) {

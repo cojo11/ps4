@@ -1,4 +1,4 @@
-# All4One Hub
+# One4All Hub
 
 Schlanker PS4-Jailbreak-Host für den Raspberry Pi. Nur das Nötige: Firmware erkennen,
 Exploit-Kette starten, GoldHEN laden. Kein FTP, keine Tools, keine Homebrew-Payloads.
