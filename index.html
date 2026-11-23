@@ -107,7 +107,13 @@
 
             if (!hint) return;
 
-            if (ps4) {
+            var ps5 = ua.match(/PlayStation 5/i);
+
+            if (ps5) {
+
+                hint.innerHTML = "PlayStation 5 erkannt &ndash; <b>PS5 Jailbreak</b> w&auml;hlen";
+
+            } else if (ps4) {
 
                 hint.innerHTML = "PlayStation 4 erkannt &ndash; <b>PS4 Jailbreak</b> w&auml;hlen";
 
@@ -144,6 +150,13 @@
             <span class="name">PS4 Jailbreak</span>
             <span class="what">Exploit-Host, HEN w&auml;hlen, jailbreaken</span>
             <span class="fw">FW 4.50 &ndash; 14.02</span>
+        </a>
+
+        <a class="choice" href="./ps5/">
+            <span class="ico">&#9650;</span>
+            <span class="name">PS5 Jailbreak</span>
+            <span class="what">Relapse &ndash; Exploit-Kette im Browser</span>
+            <span class="fw">FW 7.00 &ndash; 13.60</span>
         </a>
 
         <a class="choice" href="./ps3/">

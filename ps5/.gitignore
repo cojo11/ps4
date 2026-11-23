@@ -1,0 +1,4 @@
+ps5_exploit_log.txt
+server_out.txt
+*.log
+__pycache__/
